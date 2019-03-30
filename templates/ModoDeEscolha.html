@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<head>
+<title>Supervisorio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <style>
+
+
+
+
+h2 {
+
+position: relative;
+
+top:75px;
+
+margin:30px;
+
+display: block;
+
+
+
+}
+
+ 
+
+h6{
+
+position:absolute;
+
+bottom:0;
+
+right:5px;
+
+}
+
+
+
+.button {
+
+  display: inline-block;
+
+  border-radius: 4px;
+
+  background-color: Green;
+
+  border: none;
+
+  color: #FFFFFF;
+
+  text-align: center;
+
+  font-size: 28px;
+
+  padding: 20px;
+
+  width: 200px;
+
+  transition: all 0.5s;
+
+  cursor: pointer;
+
+  margin: 50px;
+
+  margin-top:20px;
+
+  clear:left;
+
+  clear:right;
+
+  float:none;
+
+}
+
+.button span {
+
+  cursor: pointer;
+
+  display: inline-block;
+
+  position: relative;
+
+  transition: 0.5s;
+
+}
+
+
+
+.button span:after {
+
+  content: '\00bb';
+
+  position: relative;
+
+  opacity: 0;
+
+  top: 0;
+
+  right: -20px;
+
+  transition: 0.5s;
+
+}
+
+
+
+.button:hover span {
+
+  padding-right: 25px;
+
+}
+
+
+
+.button:hover span:after {
+
+  opacity: 1;
+
+  right: 0;
+
+}
+
+.auto{
+
+clear:left;
+
+position:relative;
+
+top:50px;
+
+
+
+}
+
+.manual{
+
+clear:left;
+
+position:relative;
+
+top:50px;
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+</style>
+</head>
+
+
+
+<body>
+
+<div class="satc">
+ <img src="/static/satc.png" alt="Logo Satc" title="Logo da Satc" style="float: left; width: 200px;" />
+</div>
+
+<div class="meca">
+ <img src="/static/logomeca.png" alt="Logo Meca" title="Logo Meca" style="float: right;width: 200px;position:relative; top: 10px;" />
+</div> 
+
+
+
+<center>
+<h2> Escolha o modo: </h2>
+
+<div class="auto" ><p class="text">Se voce deseja iniciar o precesso e ver qual o tipo de peca clique em Automatico.</p>
+<a href="Automatico"><button class="button" target="_top"><span> Automatico</span> </button></a>
+</div>
+
+
+<div class="manual"><p class="text">Se voce deseja testar os atuadores clique em manual. <br> *Atencao: Somente Pessoal Autorizado</p>
+<a href="Manual"><button class="button" target="_top"><span> Manual</span> </button></a>
+</div>
+</center>
+
+
+
+
+</body>

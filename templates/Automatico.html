@@ -1,0 +1,363 @@
+<!DOCTYPE HTML>
+<head>
+<meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+       
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+<title>Supervisorio/Automatico</title>
+<style>
+
+
+.button {
+
+  display: inline-block;
+
+  border-radius: 4px;
+
+  background-color: Green;
+
+  border: none;
+  border-radius:40px;
+
+  color: #FFFFFF;
+
+  text-align: center;
+
+  font-size: 28px;
+
+  padding: 20px;
+
+  width: 200px;
+
+  transition: all 0.5s;
+
+  cursor: pointer;
+
+  margin: 50px;
+
+  margin-top:5px;
+
+
+  clear:left;
+
+  clear:right;
+
+  float:none;
+
+}
+
+.button span {
+
+  cursor: pointer;
+
+  display: inline-block;
+
+  position: relative;
+
+  transition: 0.5s;
+
+}
+
+
+
+.button span:after {
+
+  content: '\00bb';
+
+  position: relative;
+
+  opacity: 0;
+
+  top: 0;
+
+  right: -20px;
+
+  transition: 0.5s;
+
+}
+
+
+
+.button:hover span {
+
+  padding-right: 25px;
+
+}
+
+
+
+.button:hover span:after {
+
+  opacity: 1;
+
+  right: 0;
+
+}
+
+
+
+h6{
+
+position:absolute;
+
+bottom:0;
+
+left:5px;
+
+
+
+}
+
+
+
+
+
+
+h1{
+
+margin:10px;
+
+}
+p{
+font-size:25 px;
+}
+
+
+
+
+.inic {
+clear:right;
+float:right;
+
+}
+
+
+
+.emerg {
+
+clear:right;
+float:right;
+
+}
+
+
+
+.texto{
+position:relative;
+border:2px solid;
+clear:left;
+float:left;
+top:20px;
+left:10px;
+padding-right:50px;
+font-size:25px;
+}
+.voltar{
+position:relative;
+clear:right;
+float:right;
+
+
+}
+.top{
+position:relative;
+font-size:25px;
+left:130px;
+top:20px;
+
+}
+.satc{
+
+clear:left;
+
+float:left;
+
+}
+
+.meca{
+
+clear:right;
+
+}
+
+
+.atuador{
+float:left;
+margin-right:5px;
+margin-left:5px;
+}
+
+.emerge{
+background-color:red;
+}
+
+
+</style>
+</head> 
+
+<body>
+
+<div class="satc">
+ <img src="/static/satc.png" alt="Logo Satc" title="Logo da Satc" style="clear:left; float: left; width: 200px;" />
+</div>
+
+<div class="meca">
+ <img src="/static/logomeca.png" alt="Logo Meca" title="Logo Meca" style="float: right;width: 200px;position:relative; top: 10px;" />
+</div> 
+
+
+
+<p class="top"> Neste modo voce podera iniciar o ciclo automatico. <p>
+
+
+
+<div class="texto">
+<p>Total de Pecas: <span id="total"></span><br><br>
+
+<div class="atuador">
+<img src="/static/vermelho.jpg" id="RMA" alt="verde1" title="Logo da Satc"  width="30" height="30"/>	
+<img src="/static/verde.png" id="GMA" alt="verde1" title="Logo da Satc"  width="30" height="30"/>	
+</div>
+
+
+Pecas Metalicas Altas:<span id="metalalto"></span>  <br><br>
+
+<div class="atuador">
+<img src="/static/vermelho.jpg" id="RMB" title="Logo da Satc"  width="30" height="30"/>
+<img src="/static/verde.png" id="GMB" title="Logo da Satc"  width="30" height="30"/>	
+</div>
+
+Pecas Metalicas Baixas:<span id="metalbaixa"></span> <br><br>
+<div class="atuador">
+<img src="/static/vermelho.jpg" id="RA" title="Logo da Satc"  width="30" height="30"/>
+<img src="/static/verde.png" id="GA" title="Logo da Satc"  width="30" height="30"/>	
+</div>
+
+Pecas Nao Metalicas Altas: <span id="alta"></span> <br><br>
+<div class="atuador">
+ <img src="/static/vermelho.jpg" id="RB" alt="verde2" title="Logo da Satc"  width="30" height="30"/>
+<img src="/static/verde.png" id="GB" alt="verde2" title="Logo da Satc"  width="30" height="30"/>	
+</div>
+
+Pecas Nao Metalicas Baixas: <span id="baixa"></span></p>
+</div>
+
+
+
+
+<div class="botoes">
+<div class="inic">
+<button class="button" id="inicio" target="_top"><span>Inicio</span> </button>
+</div>
+
+
+<div class="emerg">
+<button class="button emerge" id="emerg" target="_top"><span>Emergencia</span> </button>
+</div>
+</div>
+<div class="voltar">
+<button class="button" id="zerar" target="_top"><span>Zerar</span> </button>
+</div>
+<div class="voltar">
+<a href="/ModoDeEscolha"><button class="button" target="_top"><span>Voltar</span> </button></a>
+</div>
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+       
+       
+	<script>
+          $(document).ready(function() {
+	    $('#inicio').click(function() {
+              $.post('/Automatico/inicio');
+	      $('#zerar').hide();
+            });
+            $('#emerg').click(function() {
+              $.post('/Automatico/emerg');
+	      $('#zerar').show();	
+            });$('#zerar').click(function() {
+              $.post('/Automatico/zerar');
+	      	
+            });
+	   
+	   function updateSwitch(switchState) {
+              if (switchState === 0) {
+                $('#RB').show();
+		$('#GB').hide();
+              }
+              else if (switchState === 1) {
+		$('#GB').show();
+		$('#RB').hide();
+                
+              }
+            }
+	   function updateSwitch1(switchState1) {
+              if (switchState1 === 0) {
+                $('#RA').show();
+		$('#GA').hide();
+              }
+              else if (switchState1 === 1) {
+		$('#GA').show();
+		$('#RA').hide();
+                
+              }
+            }
+	   function updateSwitch2(switchState2) {
+              if (switchState2 === 0) {
+                $('#RMB').show();
+		$('#GMB').hide();
+              }
+              else if (switchState2 === 1) {
+		$('#GMB').show();
+		$('#RMB').hide();
+                
+              }
+            }
+	   function updateSwitch3(switchState3) {
+              if (switchState3 === 0) {
+                $('#RMA').show();
+		$('#GMA').hide();
+              }
+              else if (switchState3 === 1) {
+		$('#GMA').show();
+		$('#RMA').hide();
+                
+              }
+            }
+
+
+	    function updateThing(thingState){
+		updateSwitch(thingState.sensorAT1);
+		updateSwitch1(thingState.sensorAT2);
+		updateSwitch2(thingState.sensorAT3);
+		updateSwitch3(thingState.sensorAT4);
+		$('#total').text(thingState.CON_TOTAL);
+		$('#metalalto').text(thingState.CON_METAL_ALTO);
+		$('#metalbaixa').text(thingState.CON_METAL_BAIXA);
+		$('#alta').text(thingState.CON_NMETAL_ALTO);
+		$('#baixa').text(thingState.CON_NMETAL_BAIXA);
+
+	   
+
+   }
+		var switchSource = new EventSource("{{ url_for('inicio') }}");
+            switchSource.onmessage = function(e) {
+              updateThing($.parseJSON(e.data));
+		
+            }
+	    // Set the switch based on the value passed to this template.
+            updateSwitch('{{ sensorAT1 }}');
+	    updateSwitch1('{{ sensorAT2 }}');
+	    updateSwitch2('{{ sensorAT3 }}');
+	    updateSwitch3('{{ sensorAT4 }}');
+            
+          });
+</script>
+
+<footer class="container">
+<h6>Desenvolvedores: Luiz Eduardo; Luiz Henrique e William </h6>
+</footer>
+</body>

@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+	<meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+		
+        <!-- Place favicon.ico in the root directory -->
+<title>Supervisorio/ Manual</title>
+
+<style>
+
+.button {
+
+  display: inline-block;
+
+  border-radius: 4px;
+
+  background-color: Green;
+
+  border: none;
+
+  color: #FFFFFF;
+
+  text-align: center;
+
+  font-size: 28px;
+
+  padding: 20px;
+
+  width: 200px;
+
+  transition: all 0.5s;
+
+  cursor: pointer;
+
+  margin: 50px;
+
+  margin-top:20px;
+
+  clear:left;
+
+  clear:right;
+
+  float:none;
+
+}
+
+.button span {
+
+  cursor: pointer;
+
+  display: inline-block;
+
+  position: relative;
+
+  transition: 0.5s;
+
+}
+
+
+
+.button span:after {
+
+  content: '\00bb';
+
+  position: relative;
+
+  opacity: 0;
+
+  top: 0;
+
+  right: -20px;
+
+  transition: 0.5s;
+
+}
+
+
+
+.button:hover span {
+
+  padding-right: 25px;
+
+}
+
+
+
+.button:hover span:after {
+
+  opacity: 1;
+
+  right: 0;
+
+}
+
+
+
+.switch {
+
+  position: absolute;
+
+  margin-left: -9999px;
+
+  visibility: hidden;
+
+  
+
+
+
+}
+
+
+
+.switch + label {
+
+  display: inline-block;
+
+  position: relative;
+
+  cursor: pointer;
+
+  outline: none;
+
+  user-select: none;
+
+ 
+
+  
+
+
+
+
+
+}
+
+.switch--shadow + label {
+
+  padding: 2px;
+
+  width: 120px;
+
+  height: 60px;
+
+  background-color: #dddddd;
+
+  border-radius: 60px;
+
+
+
+
+
+
+
+}
+
+.switch--shadow + label:before,
+
+.switch--shadow + label:after{
+
+  display: inline;
+
+  position: absolute;
+
+  top: 1px;
+
+  left: 1px;
+
+  bottom: 1px;
+
+  content: "";
+
+}
+
+.switch--shadow + label:before {
+
+  right: 1px;
+
+  background-color: #f1f1f1;
+
+  border-radius: 60px;
+
+  transition: all 0.4s;
+
+}
+
+.switch--shadow + label:after {
+
+  width: 62px;
+
+  background-color: #fff;
+
+  border-radius: 100%;
+
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+
+  transition: all 0.4s;
+
+}
+
+.switch--shadow:checked + label:before {
+
+  background-color: #8ce196;
+
+}
+
+.switch--shadow:checked + label:after {
+
+  transform: translateX(60px);
+
+}
+
+
+
+.switch__container{
+
+margin:10px;
+
+float:right;
+
+
+
+}
+
+
+
+h1{
+
+margin:10px;
+
+}
+
+
+
+
+
+.atuador, .atuador1, .atuador2, .atuador3, .esteira {
+
+position:relative;
+
+left:15%;
+
+float:left;
+
+border: 2px solid ;
+
+margin:20px;
+
+
+}
+
+
+
+
+
+
+.satc{
+
+clear:left;
+
+float:left;
+
+}
+
+.meca{
+
+clear:right;
+
+}
+
+
+
+
+
+</style>
+
+</head> 
+
+<body>
+<div class="satc">
+		<img src="/static/satc.png" alt="Logo Satc" title="Logo da Satc" style=" width: 200px;" />
+	</div>
+        <div class="meca">
+ 		<img src="/static/logomeca.png" alt="Logo Meca" title="Logo Meca" style="float: right;width: 200px;position:relative; top: 10px;" />
+	</div> 
+
+<main role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      
+        <div class="container">
+	
+        <h3>Neste modo voce podera testar todos os atuadores do sistema. </h1>
+          
+        </div>
+      
+
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+          <div class="col-md-4">
+<div class="atuador">
+
+<h1>Atuador1 
+<div class="switch__container">
+  <input id="switch-shadow" class="switch switch--shadow" type="checkbox" onclick="atuador()">
+  <label for="switch-shadow"></label>
+</div>
+</h1>
+</div>
+<div class="atuador1">
+<h1>Atuador2
+
+<div class="switch__container">
+  <input id="switch-shadow1" class="switch switch--shadow" type="checkbox" onclick="atuador1()">
+  <label for="switch-shadow1"></label>
+</div>
+</h1>
+</div>
+
+
+<div class="esteira">
+<h1>Esteira
+<div class="switch__container">
+  <input id="switch-shadow4" class="switch switch--shadow" type="checkbox" onclick="esteira()">
+  <label for="switch-shadow4"></label>
+</div>
+</h1>
+</div>
+
+
+
+             </div>
+          <div class="col-md-4">
+
+<div class="atuador2">
+<h1>Atuador3
+<div class="switch__container">
+  <input id="switch-shadow2" class="switch switch--shadow" type="checkbox" onclick="atuador2()">
+  <label for="switch-shadow2"></label>
+</div>
+</h1>
+</div>
+
+<div class="atuador3">
+<h1>Atuador4
+<div class="switch__container">
+  <input id="switch-shadow3" class="switch switch--shadow" type="checkbox" onclick="atuador3()">
+  <label for="switch-shadow3"></label>
+</div>
+</h1>
+
+</div>
+
+            </div>
+          <div class="col-md-4">
+<div class="col-md-6">
+              <h3>Sensor Alto: <span id='switch_value' class="label"></span></h3>
+        </div>
+	<div class="col-md-6">
+              <h3>Sensor Baixo: <span id='switch_value1' class="label"></span></h3>
+        </div>
+	<div class="col-md-6">
+              <h3>Sensor Metalico: <span id='switch_value2' class="label"></span></h3>
+        </div>
+	<div class="col-md-6">
+              <h3>Sensor Fim: <span id='switch_value3' class="label"></span></h3>
+        </div>
+	<div class="col-md-6">
+              <h3>Sensor Atuador1: <span id='switch_value4' class="label"></span></h3>
+        </div>
+	<div class="col-md-6">
+              <h3>Sensor Atuador2: <span id='switch_value5' class="label"></span></h3>
+        </div>
+	<div class="col-md-6">
+              <h3>Sensor Atuador3: <span id='switch_value6' class="label"></span></h3>
+        </div>
+	<div class="col-md-6">
+              <h3>Sensor atuador4: <span id='switch_value7' class="label"></span></h3>
+        </div>
+<div class="voltar">
+<a href="/ModoDeEscolha"><button class="button" target="_top"><span> Voltar</span> </button></a>
+</div>
+            </div>
+        </div>
+
+        <hr>
+
+      </div> <!-- /container -->
+
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+<script>
+function esteira(){
+var x = document.getElementById("switch-shadow4");
+z=0;
+if (x.checked == true){
+z=1;
+}
+if (x.checked == false){
+z=0;
+}
+if(z==1){
+location.href = "/Manual/8/on";
+}
+else{
+location.href = "/Manual/8/off";
+}
+
+
+}
+</script>
+
+
+{% if pins[8].state == false %}
+<script>
+document.getElementById("switch-shadow4").checked=false;
+</script>
+
+{% else %}
+<script>
+document.getElementById("switch-shadow4").checked=true;
+</script>
+{% endif %}
+<script>
+function atuador2(){
+var x = document.getElementById("switch-shadow2");
+z=0;
+if (x.checked == true){
+z=1;
+}
+if (x.checked == false){
+z=0;
+}
+if(z==1){
+location.href = "/Manual/18/on";
+}
+else{
+location.href = "/Manual/18/off";
+}
+
+
+}
+</script>
+
+
+{% if pins[18].state == false %}
+<script>
+document.getElementById("switch-shadow2").checked=false;
+</script>
+
+{% else %}
+<script>
+document.getElementById("switch-shadow2").checked=true;
+</script>
+{% endif %}
+<script>
+function atuador2(){
+var x = document.getElementById("switch-shadow2");
+z=0;
+if (x.checked == true){
+z=1;
+}
+if (x.checked == false){
+z=0;
+}
+if(z==1){
+location.href = "/Manual/18/on";
+}
+else{
+location.href = "/Manual/18/off";
+}
+
+
+}
+</script>
+
+
+{% if pins[18].state == false %}
+<script>
+document.getElementById("switch-shadow2").checked=false;
+</script>
+
+{% else %}
+<script>
+document.getElementById("switch-shadow2").checked=true;
+</script>
+{% endif %}
+<script>
+function atuador3(){
+var x = document.getElementById("switch-shadow3");
+z=0;
+if (x.checked == true){
+z=1;
+}
+if (x.checked == false){
+z=0;
+}
+if(z==1){
+location.href = "/Manual/22/on";
+}
+else{
+location.href = "/Manual/22/off";
+}
+
+
+}
+</script>
+
+
+{% if pins[22].state == false %}
+<script>
+document.getElementById("switch-shadow3").checked=false;
+</script>
+
+{% else %}
+<script>
+document.getElementById("switch-shadow3").checked=true;
+</script>
+{% endif %}
+<script>
+function atuador1(){
+var x = document.getElementById("switch-shadow1");
+z=0;
+if (x.checked == true){
+z=1;
+}
+if (x.checked == false){
+z=0;
+}
+if(z==1){
+location.href = "/Manual/16/on";
+}
+else{
+location.href = "/Manual/16/off";
+}
+
+
+}
+</script>
+
+
+{% if pins[16].state == false %}
+<script>
+document.getElementById("switch-shadow1").checked=false;
+</script>
+
+{% else %}
+<script>
+document.getElementById("switch-shadow1").checked=true;
+</script>
+{% endif %}
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script>
+          $(document).ready(function() {
+            
+            // Function to update the switch state on the page.
+            function updateSwitch(switchState) {
+              if (switchState === '0') {
+                $('#switch_value').text('Off');
+                $('#switch_value').toggleClass('label-danger', false);
+                $('#switch_value').toggleClass('label-default', true);
+              }
+              else if (switchState === '1') {
+                $('#switch_value').text('On');
+                $('#switch_value').toggleClass('label-danger', true);
+                $('#switch_value').toggleClass('label-default', false);
+              }
+            }
+	    function updateSwitch1(switchState1) {
+              if (switchState1 === '0') {
+                $('#switch_value1').text('Off');
+                $('#switch_value1').toggleClass('label-danger', false);
+                $('#switch_value1').toggleClass('label-default', true);
+              }
+              else if (switchState1 === '1') {
+                $('#switch_value1').text('On');
+                $('#switch_value1').toggleClass('label-danger', true);
+                $('#switch_value1').toggleClass('label-default', false);
+              }
+            }
+//
+function updateSwitch2(switchState2) {
+              if (switchState2 === '0') {
+                $('#switch_value2').text('Off');
+                $('#switch_value2').toggleClass('label-danger', false);
+                $('#switch_value2').toggleClass('label-default', true);
+              }
+              else if (switchState2 === '1') {
+                $('#switch_value2').text('On');
+                $('#switch_value2').toggleClass('label-danger', true);
+                $('#switch_value2').toggleClass('label-default', false);
+              }
+            }
+//
+function updateSwitch3(switchState3) {
+              if (switchState3 === '0') {
+                $('#switch_value3').text('Off');
+                $('#switch_value3').toggleClass('label-danger', false);
+                $('#switch_value3').toggleClass('label-default', true);
+              }
+              else if (switchState3 === '1') {
+                $('#switch_value3').text('On');
+                $('#switch_value3').toggleClass('label-danger', true);
+                $('#switch_value3').toggleClass('label-default', false);
+              }
+            }
+//
+function updateSwitch4(switchState4) {
+              if (switchState4 === '0') {
+                $('#switch_value4').text('Off');
+                $('#switch_value4').toggleClass('label-danger', false);
+                $('#switch_value4').toggleClass('label-default', true);
+              }
+              else if (switchState4 === '1') {
+                $('#switch_value4').text('On');
+                $('#switch_value4').toggleClass('label-danger', true);
+                $('#switch_value4').toggleClass('label-default', false);
+              }
+            }
+//
+function updateSwitch5(switchState5) {
+              if (switchState5 === '0') {
+                $('#switch_value5').text('Off');
+                $('#switch_value5').toggleClass('label-danger', false);
+                $('#switch_value5').toggleClass('label-default', true);
+              }
+              else if (switchState5 === '1') {
+                $('#switch_value5').text('On');
+                $('#switch_value5').toggleClass('label-danger', true);
+                $('#switch_value5').toggleClass('label-default', false);
+              }
+            }
+//
+function updateSwitch6(switchState6) {
+              if (switchState6 === '0') {
+                $('#switch_value6').text('Off');
+                $('#switch_value6').toggleClass('label-danger', false);
+                $('#switch_value6').toggleClass('label-default', true);
+              }
+              else if (switchState6 === '1') {
+                $('#switch_value6').text('On');
+                $('#switch_value6').toggleClass('label-danger', true);
+                $('#switch_value6').toggleClass('label-default', false);
+              }
+            }
+//
+function updateSwitch7(switchState7) {
+              if (switchState7 === '0') {
+                $('#switch_value7').text('Off');
+                $('#switch_value7').toggleClass('label-danger', false);
+                $('#switch_value7').toggleClass('label-default', true);
+              }
+              else if (switchState7 === '1') {
+                $('#switch_value7').text('On');
+                $('#switch_value7').toggleClass('label-danger', true);
+                $('#switch_value7').toggleClass('label-default', false);
+              }
+            }
+
+            // Setup switch server sent event receiver.
+            var switchSource = new EventSource("{{ url_for('switch') }}");
+            switchSource.onmessage = function(e) {
+	      var data =e.data.split('\n');
+        updateSwitch(data[0]);
+	updateSwitch1(data[1]);
+	updateSwitch2(data[2]);
+	updateSwitch3(data[3]);
+	updateSwitch4(data[4]);
+	updateSwitch5(data[5]);
+	updateSwitch6(data[6]);
+	updateSwitch7(data[7]);
+            }
+
+            // Set the switch based on the value passed to this template.
+            updateSwitch('{{ sensorAlto }}');
+	updateSwitch1('{{ sensorBaixo }}');
+	updateSwitch2('{{ sensorMetalico }}');
+	updateSwitch3('{{ sensorFim }}');
+	updateSwitch4('{{ sensorAt1 }}');
+	updateSwitch5('{{ sensorAt2 }}');
+	updateSwitch6('{{ sensorAt3 }}');
+	updateSwitch7('{{ sensorAt4 }}');
+
+  });
+         
+        </script>
+
+   <script>
+function atuador(){
+var x = document.getElementById("switch-shadow");
+z=0;
+if (x.checked == true){
+z=1;
+}
+if (x.checked == false){
+z=0;
+}
+if(z==1){
+location.href = "/Manual/12/on";
+}
+else{
+location.href = "/Manual/12/off";
+}
+
+
+}
+</script>
+
+
+{% if pins[12].state == false %}
+<script>
+document.getElementById("switch-shadow").checked=false;
+</script>
+
+{% else %}
+<script>
+document.getElementById("switch-shadow").checked=true;
+</script>
+{% endif %}
+     
+        
+
+
+<footer class="container">
+<p>Desenvolvedores: Luiz Eduardo; Luiz Henrique e William </p>
+</footer>
+</body>
